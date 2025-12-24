@@ -1,0 +1,19 @@
+<button class="bg-blue-500 rounded text-white px-3 py-2 m-4">
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls, .csv" />
+</button>
+
+<cdk-virtual-scroll-viewport itemSize="10" class="h-[500px]">
+    <table class="w-full border-separate border-spacing-y-2">
+        <tr class="text-sm font-medium hover:bg-gray-100 border-b">
+            @for(header of displayedColumns; track $index;) {
+            <th class="py-1 pl-2 text-left">{{ header }}</th>
+            }
+        </tr>
+
+        <tr class="text-sm font-medium hover:bg-gray-100 border-b" *cdkVirtualFor="let single of data">
+            @for(row of single; track $index) {
+            <td class="py-1 pl-2">{{ row }}</td>
+            }
+        </tr>
+    </table>
+</cdk-virtual-scroll-viewport>
